@@ -1,0 +1,64 @@
+{
+  "manifest_version": 3,
+  "name": "IDM Clone",
+  "version": "1.0.0",
+  "description": "Multi-connection download manager with media sniffing, YouTube/yt-dlp support and a native Windows host.",
+  "minimum_chrome_version": "111",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApRNj2shP3cJ3Lz3Nb8zILovX2oHsLXCf5vox/XaWuppIRx4s2J47c8xMYNddTO4k1mJZ5MGVqwb0fxAHcctp9+B5ZjpZ0N7rCO0+mWMcH+O9rbeVa639eJOedmdEt0XwUZrSWs1c3V8TxvXRc1DdbyL5mDOX9A9m8qBAuG5tWgIx13k/kcqWi4d2QO7emcLkxA+Cm+SEF/xX9Fv5F1TlnCsX/7T2lrjAgTn7OSF9y1IzsS7oSLIQm4XHwmnDJV79oEEodg4K/5Y/za8rw2QP5Zr9ZHsUq6uS9rkvP061s5Yk2ifEh6nSJlJbKwg4EaLSQhkbe/vwDR0PpnTuOYw0PQIDAQAB",
+  "permissions": [
+    "nativeMessaging",
+    "downloads",
+    "storage",
+    "tabs",
+    "webRequest",
+    "cookies",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "IDM Clone",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true,
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "relay.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ]
+}

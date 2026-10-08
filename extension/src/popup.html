@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IDM Clone</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand"><span class="logo" aria-hidden="true">&#x2B07;</span> IDM Clone</div>
+      <div class="host" id="host">
+        <span class="dot" id="hostDot"></span>
+        <span id="hostText">Connecting&hellip;</span>
+        <button id="reconnect" class="link" hidden>Retry</button>
+      </div>
+    </header>
+
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-tab="media" class="active">Media <span class="pill" id="mediaCount">0</span></button>
+      <button role="tab" data-tab="downloads">Downloads <span class="pill" id="jobCount">0</span></button>
+      <button role="tab" data-tab="settings">Settings</button>
+    </nav>
+
+    <main>
+      <section id="tab-media" class="panel active" role="tabpanel">
+        <div id="youtube"></div>
+        <div id="ytdlp"></div>
+        <div class="section-title" id="mediaTitle" hidden>
+          Detected on this page
+          <button id="clearMedia" class="link">Clear</button>
+        </div>
+        <div id="mediaList"></div>
+        <p class="empty" id="mediaEmpty">
+          No media detected on this tab yet. Start playing a video or reload the page.
+        </p>
+      </section>
+
+      <section id="tab-downloads" class="panel" role="tabpanel">
+        <div class="toolbar">
+          <button id="pauseAll">Pause all</button>
+        </div>
+        <div id="jobList"></div>
+        <p class="empty" id="jobsEmpty">No downloads yet.</p>
+      </section>
+
+      <section id="tab-settings" class="panel" role="tabpanel">
+        <form id="settingsForm" autocomplete="off">
+          <label>
+            <span>Simultaneous downloads</span>
+            <input type="number" id="setMax" min="1" max="10" required />
+          </label>
+          <label>
+            <span>Connections per download</span>
+            <input type="number" id="setSegments" min="1" max="32" required />
+          </label>
+          <label>
+            <span>Default download folder</span>
+            <input type="text" id="setFolder" placeholder="C:\Users\you\Downloads" required />
+          </label>
+          <label>
+            <span>yt-dlp: use cookies from browser</span>
+            <select id="setCookies">
+              <option value="">None</option>
+              <option value="chrome">Chrome</option>
+              <option value="edge">Edge</option>
+              <option value="brave">Brave</option>
+              <option value="firefox">Firefox</option>
+            </select>
+          </label>
+          <label class="check">
+            <input type="checkbox" id="setIntercept" />
+            <span>Take over browser downloads</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" id="setWindow" />
+            <span>Show this window when a download starts</span>
+          </label>
+          <div class="form-actions">
+            <button type="submit" class="primary">Save</button>
+          </div>
+        </form>
+        <p class="hint" id="hostInfo"></p>
+      </section>
+    </main>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

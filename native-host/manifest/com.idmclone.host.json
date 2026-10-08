@@ -1,0 +1,9 @@
+{
+  "name": "com.idmclone.host",
+  "description": "IDM Clone native download host",
+  "path": "C:\\Program Files\\IDMClone\\idm-clone-host.exe",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://foalgppohbghdfbkmmdnfafnhegjjpda/"
+  ]
+}
