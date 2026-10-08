@@ -1,24 +1,16 @@
 name: build
-
-on:
-  push:
-  pull_request:
-  workflow_dispatch:
-
+on: [push, pull_request, workflow_dispatch]
 jobs:
   host:
     runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4
-      - name: Configure (MSVC, x64)
-        run: cmake -S native-host -B native-host/build -G "Visual Studio 17 2022" -A x64
-      - name: Build (Release, /W4)
-        run: cmake --build native-host/build --config Release
+      - run: cmake -S native-host -B native-host/build -G "Visual Studio 17 2022" -A x64
+      - run: cmake --build native-host/build --config Release
       - uses: actions/upload-artifact@v4
         with:
           name: idm-clone-host
           path: native-host/build/dist/
-
   extension:
     runs-on: ubuntu-latest
     steps:
